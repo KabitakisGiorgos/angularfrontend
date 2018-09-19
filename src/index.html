@@ -7,8 +7,10 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <meta name="google-signin-client_id" content="BBk0QqcipxfigNlTDt3uxIfQ8dI2u3v8OgM7dpMrjl05j5CyKjwZS1EKho_lXQu1wwTGgI1w9G63azNpYIx8J-g.apps.googleusercontent.com"> -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+  <link rel="manifest" href="src/manifest.json">
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
   <script>
     // Initialize Firebase
@@ -24,13 +26,13 @@
     firebase.initializeApp(config);
     console.log(firebase.name);
 
-  </script>
+  </script> -->
 </head>
 
 <body>
   <app-root></app-root>
 </body>
-<script>
+<!-- <script>
   const messaging = firebase.messaging();
   messaging.usePublicVapidKey("BBk0QqcipxfigNlTDt3uxIfQ8dI2u3v8OgM7dpMrjl05j5CyKjwZS1EKho_lXQu1wwTGgI1w9G63azNpYIx8J-g");
   messaging.requestPermission().then(function () {
@@ -88,6 +90,6 @@ function subscribeTokenToTopic(currentToken, topic) {
       }
   
 
-</script>
+</script> -->
 
 </html>
