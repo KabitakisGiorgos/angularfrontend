@@ -1,0 +1,15 @@
+<div class="row">
+  <input type="file" (change)="onFileSelected($event)">
+  <button type="button" (click)="onUpload()">Upload</button>
+</div>
+
+<!-- <ng-template>
+  
+</ng-template> -->
+<div class="row" *ngIf="uploaded">
+  <img src="http://localhost:4201/test/returnfile/test.png" alt="testphoto">
+</div>
+
+<div class="row">
+  <button class="btn btn-primary" (click)="test()">appear</button>
+</div>
