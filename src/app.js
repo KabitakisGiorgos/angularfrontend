@@ -1,5 +1,5 @@
 // Initialize Firebase
-var config = {
+ var config = {
   apiKey: "AIzaSyDHOjICGxR4tS6RumDECYR9GNA1ngOcAFU",
     authDomain: "seismic-glow-212911.firebaseapp.com",
     databaseURL: "https://seismic-glow-212911.firebaseio.com",
@@ -12,7 +12,7 @@ firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
 var   fcmToken  = null;
-
+messaging.usePublicVapidKey("BBk0QqcipxfigNlTDt3uxIfQ8dI2u3v8OgM7dpMrjl05j5CyKjwZS1EKho_lXQu1wwTGgI1w9G63azNpYIx8J-g");
 // Request permission for push notifications.
 messaging.requestPermission()
   .then(() => {
@@ -21,6 +21,7 @@ messaging.requestPermission()
   })
   .then(token => {
     fcmToken = token;
+    console.log(token);
     log(`Received FCM token: ${token}`);
   })
   .catch(err => {
@@ -36,18 +37,12 @@ messaging.onMessage(payload => {
 
 // Handlers for buttons.
 function onOnSiteNotificationClick() {
-  // log('Sending on-site push notification...');
-  // fetch(`/push?token=${fcmToken}`);
+ 
   console.log('here test the multer server');
 }
 
 function onOffSiteNotificationClick() {
-  // log('Sending off-site push notification...');
-  // log('The page will be redirected for demo purposes');
-  // setTimeout(() => {
-  //   fetch(`/push?token=${fcmToken}&sleep=2`);
-  //   window.location = 'http://google.com';
-  // }, 3000);
+ 
   console.log('here test the multer server');
 }
 
@@ -56,3 +51,5 @@ const $log = $('#log');
 function log(message) {
   $log.append(`<br/>${message}`);
 }
+
+  
