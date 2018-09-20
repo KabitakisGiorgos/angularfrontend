@@ -18,9 +18,8 @@ import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
-import {
-  HttpClientModule
-} from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,7 @@ import {
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    HttpClientModule
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver],
   bootstrap: [AppComponent]
