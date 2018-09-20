@@ -10,6 +10,9 @@ import {
 import {
   AppComponent
 } from './app.component';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireModule } from '@angular/fire';
+
 import * as firebase from 'firebase';
 export const firebaseConfig = {
   apiKey: "AIzaSyDHOjICGxR4tS6RumDECYR9GNA1ngOcAFU",
@@ -17,18 +20,20 @@ export const firebaseConfig = {
   databaseURL: "https://seismic-glow-212911.firebaseio.com",
   projectId: "seismic-glow-212911",
   storageBucket: "seismic-glow-212911.appspot.com",
-  messagingSenderId: "868178536460"
+  messagingSenderId: "868178536460",
 };
-firebase.initializeApp(firebaseConfig);
+import { AsyncPipe } from '../../node_modules/@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
-  providers: [MessagingService],
+  providers: [MessagingService,AsyncPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

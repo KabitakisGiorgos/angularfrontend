@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { MessagingService } from "./messaging.service";
 
 @Component({
@@ -6,17 +6,17 @@ import { MessagingService } from "./messaging.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   title = 'testfirebse';
   message;
 
   constructor(private msgService: MessagingService) {}
 
-  ngOnInit() {
-    this.msgService.init()
+  ngAfterViewInit() {
     this.msgService.getPermission()
     this.msgService.receiveMessage()
     this.message = this.msgService.currentMessage
   }
 
+  // msgService.receiveMessage();
 }
