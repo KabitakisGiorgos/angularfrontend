@@ -22,6 +22,7 @@ messaging.requestPermission()
   .then(token => {
     fcmToken = token;
     console.log(token);
+    subscribeTokenToTopic(token,'test');
     log(`Received FCM token: ${token}`);
   })
   .catch(err => {
@@ -45,4 +46,21 @@ const $log = $('#log');
 
 function log(message) {
   $log.append(`<br/>${message}`);
+}
+
+
+function subscribeTokenToTopic(currentToken, topic) {
+  fetch('https://iid.googleapis.com/iid/v1/' + currentToken + '/rel/topics/' + topic, {
+    method: 'POST',
+    headers: new Headers({
+      'Authorization': 'key=AAAAyiN5KAw:APA91bGtgVEDkNSx9wuz7g-uleq9XiT3eJJwKb5bqKC9-uF-obYi6w0SZdhJkeB4gfxBeEzkiZwJjeppFWJavGdgTywtpRmic9WVrweskprfxztbaM0aOxkK7H-x9Axh0bzRB0h6qpGHii1lSBOP-bKzEd09AmB8Cw'
+    })
+  }).then(response => {
+    if (response.status < 200 || response.status >= 400) {
+      throw 'Error subscribing to topic: ' + response.status + ' - ' + response.text();
+    }
+    console.log('Subscribed to "' + topic + '"');
+  }).catch(error => {
+    console.error(error);
+  })
 }
