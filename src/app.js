@@ -37,21 +37,7 @@ function test(next) {
       title
     } = payload.notification;
     next(payload.notification);
-    // toastr.info(body, title);
   });
-}
-
-// test();
-
-// Handlers for buttons.
-function onOnSiteNotificationClick() {
-
-  console.log('here test the multer server');
-}
-
-function onOffSiteNotificationClick() {
-
-  console.log('here test the multer server');
 }
 
 // Simple logging to page element.
