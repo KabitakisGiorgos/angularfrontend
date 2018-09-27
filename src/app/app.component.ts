@@ -1,3 +1,4 @@
+var config = require('./config.json');
 import {
   Component,
   OnInit,
@@ -7,17 +8,6 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
-
-var config = { //TODO: FIX this seperately
-  "pictures": [{
-      "path": "../assets/counter_1.png"
-    },
-    {
-      "path": "../assets/test.png"
-    }
-  ]
-}
-
 
 declare function test(callback): any;
 
@@ -30,8 +20,7 @@ export class AppComponent implements OnInit {
   title = 'testAngularFirebase';
   @ViewChild('fileInput') fileInput: ElementRef;
   selectedPicture: String;
-  index:number=0;
-  
+  index: number = 0;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
