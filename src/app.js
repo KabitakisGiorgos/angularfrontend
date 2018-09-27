@@ -16,36 +16,26 @@ messaging.usePublicVapidKey("BBk0QqcipxfigNlTDt3uxIfQ8dI2u3v8OgM7dpMrjl05j5CyKjw
 // Request permission for push notifications.
 messaging.requestPermission()
   .then(() => {
-    log('Have permission to send push notifications');
     return messaging.getToken();
   })
   .then(token => {
     fcmToken = token;
     console.log(token);
     subscribeTokenToTopic(token,'test');
-    log(`Received FCM token: ${token}`);
   })
   .catch(err => {
-    log(err);
+    console.log(err);
   });
 
 // Handle incoming messages.
 function test(next) {
   messaging.onMessage((payload) => {
-    log(`Received push notification: ${JSON.stringify(payload)}`);
     const {
       body,
       title
     } = payload.notification;
     next(payload.notification);
   });
-}
-
-// Simple logging to page element.
-const $log = $('#log');
-
-function log(message) {
-  $log.append(`<br/>${message}`);
 }
 
 
