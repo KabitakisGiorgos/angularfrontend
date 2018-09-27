@@ -14,6 +14,21 @@ var config = { //TODO: FIX this seperately
     },
     {
       "path": "../assets/test.png"
+    },
+    {
+      "path": "../assets/test1.png"
+    },
+    {
+      "path": "../assets/test2.png"
+    },
+    {
+      "path": "../assets/test3.png"
+    }, 
+    {
+      "path": "../assets/test4.png"
+    },
+    {
+      "path": "../assets/tes5.png"
     }
   ]
 }
@@ -30,8 +45,7 @@ export class AppComponent implements OnInit {
   title = 'testAngularFirebase';
   @ViewChild('fileInput') fileInput: ElementRef;
   selectedPicture: String;
-  index:number=0;
-  
+  index: number = 0;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
