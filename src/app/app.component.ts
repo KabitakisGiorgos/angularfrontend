@@ -29,7 +29,7 @@ var config = { //TODO: FIX this seperately
       "path": "../assets/test4.png"
     },
     {
-      "path": "../assets/tes5.png"
+      "path": "../assets/test5.png"
     }
   ]
 }
@@ -50,10 +50,6 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    test((test) => {
-      this.fileInput.nativeElement.click();
-      console.log(test);
-    });
     this.selectedPicture = config.pictures[this.index].path;
   }
 
@@ -75,7 +71,7 @@ export class AppComponent implements OnInit {
       headers: headers
     }).subscribe(
       (data) => {
-        try {
+        try {//TODO: This can change as the transition takes some time cause of the notification delay
           this.selectedPicture = config.pictures[++this.index].path;
         } catch (err) {
           this.index = 0;
