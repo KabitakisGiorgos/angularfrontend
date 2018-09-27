@@ -1,3 +1,4 @@
+var config=require('./config.json');
 import {
   Component,
   OnInit,
@@ -8,32 +9,6 @@ import {
   HttpClient,
   HttpHeaders
 } from '@angular/common/http';
-
-var config = { //TODO: FIX this seperately
-  "pictures": [{
-      "path": "../assets/counter_1.png"
-    },
-    {
-      "path": "../assets/test.png"
-    },
-    {
-      "path": "../assets/test1.png"
-    },
-    {
-      "path": "../assets/test2.png"
-    },
-    {
-      "path": "../assets/test3.png"
-    },
-    {
-      "path": "../assets/test4.png"
-    },
-    {
-      "path": "../assets/test5.png"
-    }
-  ]
-}
-
 
 declare function test(callback): any;
 
