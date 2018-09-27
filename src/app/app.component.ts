@@ -5,7 +5,8 @@ import {
   ElementRef
 } from '@angular/core';
 import {
-  HttpClient
+  HttpClient,
+  HttpHeaders
 } from '@angular/common/http';
 
 var config = { //TODO: FIX this seperately
@@ -23,7 +24,7 @@ var config = { //TODO: FIX this seperately
     },
     {
       "path": "../assets/test3.png"
-    }, 
+    },
     {
       "path": "../assets/test4.png"
     },
@@ -57,25 +58,31 @@ export class AppComponent implements OnInit {
   }
 
   nextPicture() {
-    try {
-      this.selectedPicture = config.pictures[++this.index].path;
-    } catch (err) {
-      this.index = 0;
-      this.selectedPicture = config.pictures[this.index].path;
+
+    const url = 'http://localhost:4201/notifications/push';
+    const body = {
+      payload: {
+        topic: 'demotopic',
+        title: 'test',
+        body: 'test'
+      }
     }
-    console.log(this.selectedPicture);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    this.http.post(url, body, {
+      headers: headers
+    }).subscribe(
+      (data) => {
+        try {
+          this.selectedPicture = config.pictures[++this.index].path;
+        } catch (err) {
+          this.index = 0;
+          this.selectedPicture = config.pictures[this.index].path;
+        }
+        console.log(this.selectedPicture);
+      }
+    )
   }
-
-
-  // onUpload() {
-  //   const fd=new FormData();
-  //   fd.append('file-to-upload',this.selectedfile,this.selectedfile.name);
-  //   this.http.post('http://localhost:4201/test',fd, {responseType: 'text'}).subscribe(
-  //     (res)=>{
-  //       console.log(res);
-  //       this.uploaded=true;
-  //     }
-  //   )
-  // }
-
 }
