@@ -1,4 +1,4 @@
-<img src="{{selectedPicture}}"  alt="{{selectedPicture}}">
+<img [@fade]="state" [src]="selectedPicture"/>
 
 <button #fileInput style="display: none" (click)="prevPicture()">Previous</button>
 <button #fileInput2 style="display: none" (click)="nextPicture()">Next</button>
