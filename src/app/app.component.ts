@@ -10,6 +10,8 @@ import {
   HttpClient
 } from '@angular/common/http';
 import { fade } from './animation';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 declare function test(callback): any;
 @Component({
@@ -19,6 +21,8 @@ declare function test(callback): any;
   animations: fade
 })
 export class AppComponent implements OnInit {
+  private var1: string;
+  private sub: Subscription;
 
   state = 'in';
   enableAnimation = false;
@@ -27,7 +31,9 @@ export class AppComponent implements OnInit {
   @ViewChild('fileInput2') fileInput2: ElementRef;
   selectedPicture: String;
   index: number = 0;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     test((test) => {
@@ -36,12 +42,16 @@ export class AppComponent implements OnInit {
       console.log(test);
     });
     this.selectedPicture = config.pictures[this.index].path;
+    this.sub = this.route.params.subscribe((params: Params) => {
+      this.var1 = params['id'];
+      console.log(this.var1);
+    });
   }
 
   nextPicture() {
     this.enableAnimation = true;
     this.toggleState();
-    setTimeout(()=>{
+    setTimeout(() => {
       try {
         this.selectedPicture = config.pictures[++this.index].path;
       } catch (err) {
@@ -49,13 +59,14 @@ export class AppComponent implements OnInit {
         this.selectedPicture = config.pictures[this.index].path;
       }
       this.toggleState();
-    },1000);
+      console.log('next');
+    }, 1000);
   }
 
   prevPicture() {
     this.enableAnimation = true;
     this.toggleState();
-    setTimeout(()=>{
+    setTimeout(() => {
       try {
         this.selectedPicture = config.pictures[--this.index].path;
       } catch (err) {
@@ -64,18 +75,7 @@ export class AppComponent implements OnInit {
       }
       this.toggleState();
       console.log('prev');
-    },1000) 
-  }
-
-  onClick($event) {
-    
-    setTimeout(() => {
-      // if($event.currentTarget.innerHTML==='Next') this.nextPicture();
-      // else if($event.currentTarget.innerHTML==='Previous')
-      this.prevPicture();
-      console.log($event);
     }, 1000)
-
   }
 
   toggleState() {
