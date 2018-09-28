@@ -9,6 +9,7 @@ import {
   HttpClient,
   HttpHeaders
 } from '@angular/common/http';
+import serverconfig from '../environments/environment';
 
 declare function test(callback): any;
 
@@ -30,12 +31,12 @@ export class AppComponent implements OnInit {
 
   nextPicture() {
 
-    const url = 'http://localhost:4201/notifications/push';
+    const url = 'http://'+serverconfig.serverport+':4201/notifications/push';
     const body = {
       payload: {
         topic: 'demotopic',
         title: 'test',
-        body: 'test'
+        body: 'next'
       }
     }
     const headers = new HttpHeaders({
@@ -46,13 +47,40 @@ export class AppComponent implements OnInit {
       headers: headers
     }).subscribe(
       (data) => {
-        try {//TODO: This can change as the transition takes some time cause of the notification delay
+        try {
           this.selectedPicture = config.pictures[++this.index].path;
         } catch (err) {
           this.index = 0;
           this.selectedPicture = config.pictures[this.index].path;
         }
-        console.log(this.selectedPicture);
+      }
+    )
+  }
+
+  prevPicture() {
+
+    const url = 'http://'+serverconfig.serverport+':4201/notifications/push';
+    const body = {
+      payload: {
+        topic: 'demotopic',
+        title: 'test',
+        body: 'prev'
+      }
+    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    this.http.post(url, body, {
+      headers: headers
+    }).subscribe(
+      (data) => {
+        try {
+          this.selectedPicture = config.pictures[--this.index].path;
+        } catch (err) {
+          this.index = 0;
+          this.selectedPicture = config.pictures[this.index].path;
+        }
       }
     )
   }

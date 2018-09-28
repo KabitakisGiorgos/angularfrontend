@@ -1,1 +1,11 @@
-<img #fileInput src="{{selectedPicture}}" (click)="nextPicture()"  alt="{{selectedPicture}}">
+<img #fileInput src="{{selectedPicture}}" alt="{{selectedPicture}}">
+
+
+<div>
+    <div style="float: left; width: 130px"> 
+        <button (click)="prevPicture()" style="margin-left:100%"> Previous </button>
+    </div>
+    <div style="float:right; width:225px"> 
+        <button (click)="nextPicture()" style="margin-left:170%"> Next </button>
+    </div>
+</div>
