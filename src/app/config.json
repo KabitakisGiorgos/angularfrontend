@@ -1,5 +1,5 @@
 {
-  "pictures": [{
+  "fridge": [{
       "path": "../assets/counter_1.png"
     },
     {
@@ -19,6 +19,57 @@
     },
     {
       "path": "../assets/test5.png"
+    }
+  ],
+  "wall": [
+    {
+      "path": "../assets/counter_1.png"
+    },
+    {
+      "path": "../assets/test.png"
+    },
+    {
+      "path": "../assets/test1.png"
+    },
+    {
+      "path": "../assets/test2.png"
+    },
+    {
+      "path": "../assets/test3.png"
+    },
+    {
+      "path": "../assets/test4.png"
+    },
+    {
+      "path": "../assets/test5.png"
+    }
+  ],
+  "counter": [
+    {
+      "path": "../assets/counter_1.png"
+    },
+    {
+      "path": "../assets/test.png"
+    },
+    {
+      "path": "../assets/test1.png"
+    },
+    {
+      "path": "../assets/test2.png"
+    },
+    {
+      "path": "../assets/test3.png"
+    },
+    {
+      "path": "../assets/test4.png"
+    },
+    {
+      "path": "../assets/test5.png"
+    }
+  ],
+  "unknown":[
+    {
+      "path":"./assets/unknown.jpg"
     }
   ]
 }

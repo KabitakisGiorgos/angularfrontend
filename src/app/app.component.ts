@@ -1,5 +1,5 @@
 
-var config = require('./config.json');
+var config = require('./config.json');//TODO: Take from @Jasmine the real photos
 import {
   Component,
   OnInit,
@@ -21,8 +21,9 @@ declare function test(callback): any;
   animations: fade
 })
 export class AppComponent implements OnInit {
-  private var1: string;
+  private device: string;
   private sub: Subscription;
+  devices=['fridge','wall','counter'];
 
   state = 'in';
   enableAnimation = false;
@@ -41,10 +42,14 @@ export class AppComponent implements OnInit {
       else if (test.body === 'prev') this.fileInput.nativeElement.click();
       console.log(test);
     });
-    this.selectedPicture = config.pictures[this.index].path;
+    //TODO: Fix if another id is given
     this.sub = this.route.params.subscribe((params: Params) => {
-      this.var1 = params['id'];
-      console.log(this.var1);
+    
+      if(!this.devices.includes(params['id'])){
+        this.device='unknown'
+      }else this.device = params['id'];
+    
+      this.selectedPicture = config[this.device][this.index].path;
     });
   }
 
@@ -53,10 +58,10 @@ export class AppComponent implements OnInit {
     this.toggleState();
     setTimeout(() => {
       try {
-        this.selectedPicture = config.pictures[++this.index].path;
+        this.selectedPicture =config[this.device][++this.index].path;
       } catch (err) {
         this.index = 0;
-        this.selectedPicture = config.pictures[this.index].path;
+        this.selectedPicture = config[this.device][this.index].path;
       }
       this.toggleState();
       console.log('next');
@@ -68,10 +73,10 @@ export class AppComponent implements OnInit {
     this.toggleState();
     setTimeout(() => {
       try {
-        this.selectedPicture = config.pictures[--this.index].path;
+        this.selectedPicture = config[this.device][--this.index].path;
       } catch (err) {
-        this.index = config.pictures.length - 1;
-        this.selectedPicture = config.pictures[this.index].path;
+        this.index = config[this.device].length - 1;
+        this.selectedPicture =config[this.device][this.index].path;
       }
       this.toggleState();
       console.log('prev');
