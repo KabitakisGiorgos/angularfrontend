@@ -19,13 +19,15 @@ declare function test(callback): any;
 export class AppComponent implements OnInit {
   title = 'testAngularFirebase';
   @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('fileInput2') fileInput2: ElementRef;
   selectedPicture: String;
   index: number = 0;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     test((test) => {
-      this.fileInput.nativeElement.click();
+      if(test.body==='next') this.fileInput2.nativeElement.click();
+      else if(test.body==='prev') this.fileInput.nativeElement.click();
       console.log(test);
     });
     this.selectedPicture = config.pictures[this.index].path;
@@ -38,8 +40,19 @@ export class AppComponent implements OnInit {
       this.index = 0;
       this.selectedPicture = config.pictures[this.index].path;
     }
-    console.log(this.selectedPicture);
+    console.log('next');
   }
+
+  prevPicture() {
+    try {
+      this.selectedPicture = config.pictures[--this.index].path;
+    } catch (err) {
+      this.index = config.pictures.length-1;
+      this.selectedPicture = config.pictures[this.index].path;
+    }
+    console.log('prev');
+  }
+
 
 
   // onUpload() {
