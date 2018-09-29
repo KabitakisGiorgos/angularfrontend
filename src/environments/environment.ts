@@ -8,7 +8,8 @@ export const environment = {
 };
 
 var serverconfig={
-  serverport:'139.91.80.241'
+  serverport:'192.168.1.3',
+  port:'4300'
 }
 
 
