@@ -1,11 +1,6 @@
-<img #fileInput src="{{selectedPicture}}" alt="{{selectedPicture}}">
+<div class="w3-content w3-display-container">
+  <img #fileInput src="{{selectedPicture}}" alt="{{selectedPicture}}">
 
-
-<div>
-    <div style="float: left; width: 130px"> 
-        <button (click)="prevPicture()" style="margin-left:100%"> Previous </button>
-    </div>
-    <div style="float:right; width:225px"> 
-        <button (click)="nextPicture()" style="margin-left:170%"> Next </button>
-    </div>
+  <button class="w3-button w3-black w3-display-left" (click)="prevPicture()">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" (click)="nextPicture()">&#10095;</button>
 </div>

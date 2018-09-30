@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   nextPicture() {
+    console.log('next')
 
     const url = 'http://'+serverconfig.serverport+':'+serverconfig.port+'/notifications/push';
     const body = {
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   prevPicture() {
-
+    console.log('prev')
     const url = 'http://'+serverconfig.serverport+':4201/notifications/push';
     const body = {
       payload: {
