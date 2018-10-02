@@ -9,7 +9,7 @@ export const environment = {
 
 var serverconfig={
   serverport:'192.168.1.3',
-  port:'4300'
+  port:'4200'
 }
 
 
