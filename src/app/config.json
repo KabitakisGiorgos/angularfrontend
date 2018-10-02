@@ -23,48 +23,42 @@
   ],
   "wall": [
     {
-      "path": "../assets/counter_1.png"
+      "path": "../assets/wall1.png"
     },
     {
-      "path": "../assets/test.png"
+      "path": "../assets/wall2.png"
     },
     {
-      "path": "../assets/test1.png"
+      "path": "../assets/wall3.png"
     },
     {
-      "path": "../assets/test2.png"
+      "path": "../assets/wall4.png"
     },
     {
-      "path": "../assets/test3.png"
+      "path": "../assets/wall5.png"
     },
     {
-      "path": "../assets/test4.png"
-    },
-    {
-      "path": "../assets/test5.png"
+      "path": "../assets/wall6.png"
     }
   ],
   "counter": [
     {
-      "path": "../assets/counter_1.png"
+      "path": "../assets/counter1.png"
     },
     {
-      "path": "../assets/test.png"
+      "path": "../assets/counter2.png"
     },
     {
-      "path": "../assets/test1.png"
+      "path": "../assets/counter3.png"
     },
     {
-      "path": "../assets/test2.png"
+      "path": "../assets/counter4.png"
     },
     {
-      "path": "../assets/test3.png"
+      "path": "../assets/counter5.png"
     },
     {
-      "path": "../assets/test4.png"
-    },
-    {
-      "path": "../assets/test5.png"
+      "path": "../assets/counter6.gif"
     }
   ],
   "unknown":[
