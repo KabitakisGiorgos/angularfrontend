@@ -18,7 +18,7 @@ declare function test(callback): any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: fade
+  // animations: fade
 })
 export class AppComponent implements OnInit {
   private device: string;
@@ -54,33 +54,33 @@ export class AppComponent implements OnInit {
   }
 
   nextPicture() {
-    this.enableAnimation = true;
-    this.toggleState();
-    setTimeout(() => {
+    // this.enableAnimation = true;
+    // this.toggleState();
+    // setTimeout(() => {
       try {
         this.selectedPicture =config[this.device][++this.index].path;
       } catch (err) {
         this.index = 0;
         this.selectedPicture = config[this.device][this.index].path;
       }
-      this.toggleState();
-      console.log('next');
-    }, 1000);
+    //   this.toggleState();
+    //   console.log('next');
+    // }, 1000);
   }
 
   prevPicture() {
-    this.enableAnimation = true;
-    this.toggleState();
-    setTimeout(() => {
+    // this.enableAnimation = true;
+    // this.toggleState();
+    // setTimeout(() => {
       try {
         this.selectedPicture = config[this.device][--this.index].path;
       } catch (err) {
         this.index = config[this.device].length - 1;
         this.selectedPicture =config[this.device][this.index].path;
       }
-      this.toggleState();
-      console.log('prev');
-    }, 1000)
+    //   this.toggleState();
+    //   console.log('prev');
+    // }, 1000)
   }
 
   toggleState() {
