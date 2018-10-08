@@ -9,38 +9,9 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
-<<<<<<< HEAD
-
-var config = { //TODO: FIX this seperately
-  "pictures": [{
-      "path": "../assets/counter_1.png"
-    },
-    {
-      "path": "../assets/test.png"
-    },
-    {
-      "path": "../assets/test1.png"
-    },
-    {
-      "path": "../assets/test2.png"
-    },
-    {
-      "path": "../assets/test3.png"
-    }, 
-    {
-      "path": "../assets/test4.png"
-    },
-    {
-      "path": "../assets/tes5.png"
-    }
-  ]
-}
-
-=======
 import { fade } from './animation';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
->>>>>>> Demo
 
 declare function test(callback): any;
 @Component({
@@ -61,13 +32,9 @@ export class AppComponent implements OnInit {
   @ViewChild('fileInput2') fileInput2: ElementRef;
   selectedPicture: String;
   index: number = 0;
-<<<<<<< HEAD
-  constructor(private http: HttpClient) {}
-=======
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router) { }
->>>>>>> Demo
 
   ngOnInit() {
     test((test) => {
