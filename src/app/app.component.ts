@@ -18,7 +18,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.msgService.getPermission()
-    this.msgService.receiveMessage()
+    this.msgService.receiveMessage((test)=>{
+      console.log(test)
+    }),
     this.message = this.msgService.currentMessage
   }
 
