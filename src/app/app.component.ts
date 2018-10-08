@@ -1,10 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 declare function test(callback): any;
+
+import { Component, OnInit } from '@angular/core';
+import { MessagingService } from "./messaging.service";
 
 @Component({
   selector: 'app-root',
@@ -12,37 +11,15 @@ declare function test(callback): any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'testAngularFirebase';
 
-  selectedfile:File=null;
-  uploaded:boolean = false;
-  
-  constructor(private http:HttpClient) {}
+  message;
+
+  constructor(private msgService: MessagingService) {}
 
   ngOnInit() {
-    test((test) => {
-      alert(test.body+' '+test.title);
-      console.log(test);
-    });
-  }
-
-  appear(){
-    this.uploaded=!this.uploaded;
-  }
-
-  onFileSelected(event){
-    this.selectedfile =<File> event.target.files[0];
-  }
- 
-  onUpload() {
-    const fd=new FormData();
-    fd.append('file-to-upload',this.selectedfile,this.selectedfile.name);
-    this.http.post('http://localhost:4201/test',fd, {responseType: 'text'}).subscribe(
-      (res)=>{
-        console.log(res);
-        this.uploaded=true;
-      }
-    )
+    this.msgService.getPermission()
+    this.msgService.receiveMessage()
+    this.message = this.msgService.currentMessage
   }
 
 }
