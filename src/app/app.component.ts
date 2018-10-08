@@ -1,3 +1,5 @@
+
+var config = require('./config.json');//TODO: Take from @Jasmine the real photos
 import {
   Component,
   OnInit,
@@ -7,6 +9,7 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
+<<<<<<< HEAD
 
 var config = { //TODO: FIX this seperately
   "pictures": [{
@@ -33,49 +36,87 @@ var config = { //TODO: FIX this seperately
   ]
 }
 
+=======
+import { fade } from './animation';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+>>>>>>> Demo
 
 declare function test(callback): any;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  // animations: fade
 })
 export class AppComponent implements OnInit {
+  private device: string;
+  private sub: Subscription;
+  devices=['fridge','wall','counter'];
+
+  state = 'in';
+  enableAnimation = false;
   title = 'testAngularFirebase';
   @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('fileInput2') fileInput2: ElementRef;
   selectedPicture: String;
   index: number = 0;
+<<<<<<< HEAD
   constructor(private http: HttpClient) {}
+=======
+  constructor(private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router) { }
+>>>>>>> Demo
 
   ngOnInit() {
     test((test) => {
-      this.fileInput.nativeElement.click();
+      if (test.body === 'next') this.fileInput2.nativeElement.click();
+      else if (test.body === 'prev') this.fileInput.nativeElement.click();
       console.log(test);
     });
-    this.selectedPicture = config.pictures[this.index].path;
+    //TODO: Fix if another id is given
+    this.sub = this.route.params.subscribe((params: Params) => {
+    
+      if(!this.devices.includes(params['id'])){
+        this.device='unknown'
+      }else this.device = params['id'];
+    
+      this.selectedPicture = config[this.device][this.index].path;
+    });
   }
 
   nextPicture() {
-    try {
-      this.selectedPicture = config.pictures[++this.index].path;
-    } catch (err) {
-      this.index = 0;
-      this.selectedPicture = config.pictures[this.index].path;
-    }
-    console.log(this.selectedPicture);
+    // this.enableAnimation = true;
+    // this.toggleState();
+    // setTimeout(() => {
+      try {
+        this.selectedPicture =config[this.device][++this.index].path;
+      } catch (err) {
+        this.index = 0;
+        this.selectedPicture = config[this.device][this.index].path;
+      }
+    //   this.toggleState();
+    //   console.log('next');
+    // }, 1000);
   }
 
+  prevPicture() {
+    // this.enableAnimation = true;
+    // this.toggleState();
+    // setTimeout(() => {
+      try {
+        this.selectedPicture = config[this.device][--this.index].path;
+      } catch (err) {
+        this.index = config[this.device].length - 1;
+        this.selectedPicture =config[this.device][this.index].path;
+      }
+    //   this.toggleState();
+    //   console.log('prev');
+    // }, 1000)
+  }
 
-  // onUpload() {
-  //   const fd=new FormData();
-  //   fd.append('file-to-upload',this.selectedfile,this.selectedfile.name);
-  //   this.http.post('http://localhost:4201/test',fd, {responseType: 'text'}).subscribe(
-  //     (res)=>{
-  //       console.log(res);
-  //       this.uploaded=true;
-  //     }
-  //   )
-  // }
-
+  toggleState() {
+    this.state = this.state === 'in' ? 'out' : 'in';
+  }
 }

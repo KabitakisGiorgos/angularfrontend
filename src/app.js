@@ -21,7 +21,7 @@ messaging.requestPermission()
   .then(token => {
     fcmToken = token;
     console.log(token);
-    subscribeTokenToTopic(token,'test');
+    subscribeTokenToTopic(token,'demotopic');
   })
   .catch(err => {
     console.log(err);
