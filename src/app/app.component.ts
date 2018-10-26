@@ -1,5 +1,4 @@
-
-var config = require('./config.json');//TODO: Take from @Jasmine the real photos
+var config = require('./config.json'); //TODO: Take from @Jasmine the real photos
 import {
   Component,
   OnInit,
@@ -9,9 +8,20 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
-import { fade } from './animation';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {
+  fade
+} from './animation';
+import {
+  Router,
+  ActivatedRoute,
+  Params
+} from '@angular/router';
+import {
+  Subscription
+} from 'rxjs';
+import {
+  HostListener
+} from '@angular/core';
 
 declare function test(callback): any;
 @Component({
@@ -22,8 +32,16 @@ declare function test(callback): any;
 })
 export class AppComponent implements OnInit {
   private device: string;
+  private key;
   private sub: Subscription;
-  devices=['fridge','wall','counter'];
+
+  @HostListener('document:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.key = event.key;
+    if (event.key === 'ArrowLeft') this.nextPicture();
+    else if (event.key === 'ArrowRight') this.prevPicture();
+  }
+  devices = ['fridge', 'wall', 'counter'];
 
   state = 'in';
   enableAnimation = false;
@@ -34,56 +52,34 @@ export class AppComponent implements OnInit {
   index: number = 0;
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit() {
-    test((test) => {
-      if (test.body === 'next') this.fileInput2.nativeElement.click();
-      else if (test.body === 'prev') this.fileInput.nativeElement.click();
-      console.log(test);
-    });
-    //TODO: Fix if another id is given
     this.sub = this.route.params.subscribe((params: Params) => {
-    
-      if(!this.devices.includes(params['id'])){
-        this.device='unknown'
-      }else this.device = params['id'];
-    
+
+      if (!this.devices.includes(params['id'])) {
+        this.device = 'unknown'
+      } else this.device = params['id'];
+
       this.selectedPicture = config[this.device][this.index].path;
     });
   }
 
   nextPicture() {
-    // this.enableAnimation = true;
-    // this.toggleState();
-    // setTimeout(() => {
-      try {
-        this.selectedPicture =config[this.device][++this.index].path;
-      } catch (err) {
-        this.index = 0;
-        this.selectedPicture = config[this.device][this.index].path;
-      }
-    //   this.toggleState();
-    //   console.log('next');
-    // }, 1000);
+    try {
+      this.selectedPicture = config[this.device][++this.index].path;
+    } catch (err) {
+      this.index = 0;
+      this.selectedPicture = config[this.device][this.index].path;
+    }
   }
 
   prevPicture() {
-    // this.enableAnimation = true;
-    // this.toggleState();
-    // setTimeout(() => {
-      try {
-        this.selectedPicture = config[this.device][--this.index].path;
-      } catch (err) {
-        this.index = config[this.device].length - 1;
-        this.selectedPicture =config[this.device][this.index].path;
-      }
-    //   this.toggleState();
-    //   console.log('prev');
-    // }, 1000)
-  }
-
-  toggleState() {
-    this.state = this.state === 'in' ? 'out' : 'in';
+    try {
+      this.selectedPicture = config[this.device][--this.index].path;
+    } catch (err) {
+      this.index = config[this.device].length - 1;
+      this.selectedPicture = config[this.device][this.index].path;
+    }
   }
 }
